@@ -59,6 +59,9 @@ public class SimulatedAnnealing extends AbstractAlgorithm {
             } while (!placed && !temp.isEmpty());
         }
         
+        if (currentSolution.size() != this.agencies.size()) {
+            throw new IllegalStateException("Not all agencies are affected to a training center.");
+        }
         // Iterate to get the next best solution
         // @todo Do it.
     }

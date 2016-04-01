@@ -51,11 +51,12 @@ public class SimulatedAnnealing extends AbstractAlgorithm {
                 }
                 if ((closestTC.getCapacity() - closestTC.getOccupiedPlaces()) >= a.getEmployeesNumber()) {
                     currentSolution.put(a, closestTC);
+                    placed = true;
                 }
                 else {
                     temp.remove(closestTC);
                 }
-            } while (!placed);
+            } while (!placed && !temp.isEmpty());
         }
         
         // Iterate to get the next best solution

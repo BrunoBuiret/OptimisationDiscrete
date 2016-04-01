@@ -15,7 +15,7 @@ public class testDistance {
     
     public static void main(String[] args) {
         
-        Double d = DistanceUtils.calculateDistance(-0.75, 45.45, 3.71667, 44.8167);
+        Double d = DistanceUtils.calculateDistanceLatLong(-0.75, 45.45, 3.71667, 44.8167);
         
         System.out.println(d);
         

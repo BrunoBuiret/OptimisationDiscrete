@@ -6,6 +6,8 @@
 package utils;
 
 import static java.lang.Math.*;
+import model.Agency;
+import model.TrainingCenter;
 
 /**
  *
@@ -15,7 +17,7 @@ public class DistanceUtils {
     
     private static final Double earthRadius = 6371000.0;
     
-    public static Double calculateDistance(Double longitudeAgency, Double latitudeAgency, 
+    public static Double calculateDistanceLatLong(Double longitudeAgency, Double latitudeAgency, 
             Double longitudeTC, Double latitudeTC) {
         
         Double d = earthRadius * acos(sin(toRadians(latitudeAgency)) * sin(toRadians(latitudeTC)) + cos(toRadians(latitudeAgency)) * 
@@ -26,4 +28,7 @@ public class DistanceUtils {
         return d;
     }
     
+    public static Double calculateDistance(Agency agency, TrainingCenter trainingCenter) {
+       return calculateDistanceLatLong(agency.getLongitude(), agency.getLatitude(), trainingCenter.getLongitude(), trainingCenter.getLatitude()); 
+    }
 }

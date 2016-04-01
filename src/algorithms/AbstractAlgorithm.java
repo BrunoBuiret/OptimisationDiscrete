@@ -23,7 +23,7 @@ public abstract class AbstractAlgorithm {
     /**
      * The maximum number of employees per training center.
      */
-    protected int employeesPerTrainingCenter;
+    protected int trainingCenterCapacity;
     
     /**
      * A training center's trainers' fee.
@@ -56,18 +56,19 @@ public abstract class AbstractAlgorithm {
     protected Map<Agency, Map<TrainingCenter, Double>> distances;
     
     /**
+     * Creates a new abstract algorithm to solve the problem.
      * 
-     * @param employeesPerTrainingCenter The maximum number of employees per training center.
+     * @param trainingCenterCapacity The maximum number of employees per training center.
      * @param trainersFee A training center's trainers' fee.
      * @param trainingCenterFee  A training center's additional fee.
      * @param pricePerKilometer The cost of a kilometer by car.
      * @param agenciesFilePath The path to the CSV file containing the agencies.
      * @param trainingCentersFilePath The path to the CSV file containing the training centers;
      */
-    public AbstractAlgorithm(int employeesPerTrainingCenter, double trainersFee, double trainingCenterFee, double pricePerKilometer, String agenciesFilePath, String trainingCentersFilePath)
+    public AbstractAlgorithm(int trainingCenterCapacity, double trainersFee, double trainingCenterFee, double pricePerKilometer, String agenciesFilePath, String trainingCentersFilePath)
     {
         // Initialize properties
-        this.employeesPerTrainingCenter = employeesPerTrainingCenter;
+        this.trainingCenterCapacity = trainingCenterCapacity;
         this.trainersFee = trainersFee;
         this.trainingCenterFee = trainingCenterFee;
         this.pricePerKilometer = pricePerKilometer;
@@ -165,7 +166,8 @@ public abstract class AbstractAlgorithm {
                     trainingCenterLine[1],
                     Integer.parseInt(trainingCenterLine[2]),
                     Double.parseDouble(trainingCenterLine[4]),
-                    Double.parseDouble(trainingCenterLine[3])
+                    Double.parseDouble(trainingCenterLine[3]),
+                    this.trainingCenterCapacity
                 ));
             }
             catch(NumberFormatException ex)

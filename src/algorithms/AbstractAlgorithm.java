@@ -1,37 +1,65 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package algorithms;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import model.Agency;
 import model.TrainingCenter;
 
 /**
- *
- * @author bruno
+ * @author Bruno Buiret (bruno.buiret@etu.univ-lyon1.fr)
+ * @author Thomas Arnaud (thomas.arnaud@etu.univ-lyon1.fr)
+ * @author Alexis Rabilloud (alexis.rabilloud@etu.univ-lyon1.fr)
  */
 public abstract class AbstractAlgorithm {
+    /**
+     * The maximum number of employees per training center.
+     */
+    protected int employeesPerTrainingCenter;
+    
+    /**
+     * A training center's trainers' fee.
+     */
     protected double trainersFee;
     
+    /**
+     * A training center's additional fee.
+     */
     protected double trainingCenterFee;
     
+    /**
+     * The cost of a kilometer by car.
+     */
     protected double pricePerKilometer;
     
+    /**
+     * A list of every agencies with employees to train.
+     */
     protected List<Agency> agencies;
     
+    /**
+     * A list of every available training centers across France.
+     */
     protected List<TrainingCenter> trainingCenters;
     
-    public AbstractAlgorithm(double trainersFee, double trainingCenterFee, double pricePerKilometer, String agenciesFilePath, String trainingCentersFilePath)
+    /**
+     * 
+     * @param employeesPerTrainingCenter The maximum number of employees per training center.
+     * @param trainersFee A training center's trainers' fee.
+     * @param trainingCenterFee  A training center's additional fee.
+     * @param pricePerKilometer The cost of a kilometer by car.
+     * @param agenciesFilePath The path to the CSV file containing the agencies.
+     * @param trainingCentersFilePath The path to the CSV file containing the training centers;
+     */
+    public AbstractAlgorithm(int employeesPerTrainingCenter, double trainersFee, double trainingCenterFee, double pricePerKilometer, String agenciesFilePath, String trainingCentersFilePath)
     {
+        // Initialize properties
+        this.employeesPerTrainingCenter = employeesPerTrainingCenter;
         this.trainersFee = trainersFee;
         this.trainingCenterFee = trainingCenterFee;
         this.pricePerKilometer = pricePerKilometer;
         
-        // Load agencies
+        // Test the existence of the agencies' file
         File agenciesFile = new File(agenciesFilePath);
         
         if(!agenciesFile.exists())
@@ -59,8 +87,9 @@ public abstract class AbstractAlgorithm {
         }
         
         // @todo Load agencies
+        this.agencies = new ArrayList<>();
         
-        // Load training centers
+        // Test existence of the training centers' file
         File trainingCentersFile = new File(trainingCentersFilePath);
         
         if(!trainingCentersFile.exists())
@@ -88,5 +117,6 @@ public abstract class AbstractAlgorithm {
         }
         
         // @todo Load training centers
+        this.trainingCenters = new ArrayList<>();
     }
 }

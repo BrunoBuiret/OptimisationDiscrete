@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package algorithms;
 
 import java.util.Map;
@@ -12,16 +7,17 @@ import model.Agency;
 import model.TrainingCenter;
 
 /**
- *
- * @author bruno
+ * @author Bruno Buiret (bruno.buiret@etu.univ-lyon1.fr)
+ * @author Thomas Arnaud (thomas.arnaud@etu.univ-lyon1.fr)
+ * @author Alexis Rabilloud (alexis.rabilloud@etu.univ-lyon1.fr)
  */
 public class SimulatedAnnealing extends AbstractAlgorithm {
     protected Map<Agency, TrainingCenter> bestSolution;
     
     protected double bestPrice;
     
-    public SimulatedAnnealing(double trainersFee, double trainingCenterFee, double pricePerKilometer, String agenciesFilePath, String trainingCentersFilePath) {
-        super(trainersFee, trainingCenterFee, pricePerKilometer, agenciesFilePath, trainingCentersFilePath);
+    public SimulatedAnnealing(int employeesPerTrainingCenter, double trainersFee, double trainingCenterFee, double pricePerKilometer, String agenciesFilePath, String trainingCentersFilePath) {
+        super(employeesPerTrainingCenter, trainersFee, trainingCenterFee, pricePerKilometer, agenciesFilePath, trainingCentersFilePath);
     }
 
     public void run(int iterationsNumber) {

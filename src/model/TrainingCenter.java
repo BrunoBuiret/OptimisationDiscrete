@@ -32,6 +32,16 @@ public class TrainingCenter {
     protected double longitude;
     
     /**
+     * The training center's maximum capacity
+     */
+    protected int maximumCapacity = 60;
+    
+    /**
+     * The training center's already occupied places
+     */
+    protected int occupiedPlace = 0;
+    
+    /**
      * Creates a new training center.
      * 
      * @param id The training center's id.

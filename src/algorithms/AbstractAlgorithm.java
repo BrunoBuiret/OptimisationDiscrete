@@ -2,12 +2,14 @@ package algorithms;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Agency;
 import model.TrainingCenter;
+import utils.DistanceUtils;
 import utils.ReadCSV;
 
 /**
@@ -174,6 +176,13 @@ public abstract class AbstractAlgorithm {
         }
         
         // Compute the distance between each agency and every training center
+        for(Agency agency : this.agencies) {
+            Map<TrainingCenter, Double> centers = new HashMap();
+            for(TrainingCenter trainingCenter : this.trainingCenters) {
+                centers.put(trainingCenter, DistanceUtils.calculateDistance(agency, trainingCenter));
+            }
+            this.distances.put(agency, centers);
+        }
     }
     
     /**
@@ -185,6 +194,10 @@ public abstract class AbstractAlgorithm {
      */
     protected double getDistance(Agency agency, TrainingCenter trainingCenter)
     {
-        return 0.;
+        if(this.distances.containsKey(agency) && this.distances.get(agency).containsKey(trainingCenter)) {
+            return this.distances.get(agency).get(trainingCenter);
+        }
+        
+        return -1;
     }
 }

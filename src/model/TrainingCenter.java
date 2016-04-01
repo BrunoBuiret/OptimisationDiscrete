@@ -19,7 +19,7 @@ public class TrainingCenter {
     /**
      * The training center's zip code.
      */
-    protected int zipCode;
+    protected String zipCode;
     
     /**
      *  The training center's latitude.
@@ -51,7 +51,7 @@ public class TrainingCenter {
      * @param longitude The training center's longitude.
      * @param capacity The training center's capacity.
      */
-    public TrainingCenter(String id, String name, int zipCode, double latitude, double longitude, int capacity)
+    public TrainingCenter(String id, String name, String zipCode, double latitude, double longitude, int capacity)
     {
         this.id = id;
         this.name = name;
@@ -103,7 +103,7 @@ public class TrainingCenter {
      * 
      * @return The training center's zip code.
      */
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
@@ -112,7 +112,7 @@ public class TrainingCenter {
      * 
      * @param zipCode The training center's zip code.
      */
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 

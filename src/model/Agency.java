@@ -19,7 +19,7 @@ public class Agency {
     /**
      * The agency's zip code.
      */
-    protected int zipCode;
+    protected String zipCode;
     
     /**
      * The agency's latitude.
@@ -46,7 +46,7 @@ public class Agency {
      * @param longitude The agency's longitude.
      * @param employeesNumber The agency's number of employees.
      */
-    public Agency(String id, String name, int zipCode, double latitude, double longitude, int employeesNumber)
+    public Agency(String id, String name, String zipCode, double latitude, double longitude, int employeesNumber)
     {
         this.id = id;
         this.name = name;
@@ -97,7 +97,7 @@ public class Agency {
      * 
      * @return The agency's zip code.
      */
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
@@ -106,7 +106,7 @@ public class Agency {
      * 
      * @param zipCode The agency's zip code.
      */
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 

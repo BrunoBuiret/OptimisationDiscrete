@@ -10,8 +10,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Thomas Arnaud
+ * @author Bruno Buiret (bruno.buiret@etu.univ-lyon1.fr)
+ * @author Thomas Arnaud (thomas.arnaud@etu.univ-lyon1.fr)
+ * @author Alexis Rabilloud (alexis.rabilloud@etu.univ-lyon1.fr)
  */
 public class ReadCSV {
     public static List<String[]> readFile(File file, Boolean hasHeader) {
@@ -33,16 +34,17 @@ public class ReadCSV {
                 fileRead.add(lineSpliped);
             }
             
-            while (line != null) {
-                line = br.readLine();
-                String[] lineSpliped = line.split(";");
-                for(int i = 0; i < lineSpliped.length; i++) {
-                    if(lineSpliped[i].startsWith("\"")) {
-                        lineSpliped[i] = lineSpliped[i].substring(0, lineSpliped[i].length() - 2);
+            while ((line = br.readLine()) != null) {
+                String[] lineSplit = line.split(";");
+                for(int i = 0; i < lineSplit.length; i++) {
+                    if(lineSplit[i].startsWith("\"")) {
+                        lineSplit[i] = lineSplit[i].substring(1, lineSplit[i].length() - 1);
                     }
                 }
-                fileRead.add(lineSpliped);
+                fileRead.add(lineSplit);
             }
+            
+            br.close();
         
         }   catch (IOException ex) {
             Logger.getLogger(ReadCSV.class.getName()).log(Level.SEVERE, null, ex);

@@ -102,7 +102,7 @@ public abstract class AbstractAlgorithm {
         
         // Load agencies
         this.agencies = new ArrayList<>();
-        List<String[]> agenciesList = ReadCSV.readFile(agenciesFile, Boolean.FALSE);
+        List<String[]> agenciesList = ReadCSV.readFile(agenciesFile, Boolean.TRUE);
         
         for(String[] agencyLine : agenciesList)
         {
@@ -111,7 +111,7 @@ public abstract class AbstractAlgorithm {
                 this.agencies.add(new Agency(
                     agencyLine[0],
                     agencyLine[1],
-                    Integer.parseInt(agencyLine[2]),
+                    agencyLine[2],
                     Double.parseDouble(agencyLine[4]),
                     Double.parseDouble(agencyLine[3]),
                     Integer.parseInt(agencyLine[5])
@@ -121,7 +121,8 @@ public abstract class AbstractAlgorithm {
             {
                 Logger.getLogger(AbstractAlgorithm.class.getName()).log(
                     Level.SEVERE,
-                    "Couldn't parse a string."
+                    null,
+                    ex
                 );
             }
         }
@@ -155,7 +156,7 @@ public abstract class AbstractAlgorithm {
         
         // @todo Load training centers
         this.trainingCenters = new ArrayList<>();
-        List<String[]> trainingCentersList = ReadCSV.readFile(trainingCentersFile, Boolean.FALSE);
+        List<String[]> trainingCentersList = ReadCSV.readFile(trainingCentersFile, Boolean.TRUE);
         
         for(String[] trainingCenterLine : trainingCentersList)
         {
@@ -164,7 +165,7 @@ public abstract class AbstractAlgorithm {
                 this.trainingCenters.add(new TrainingCenter(
                     trainingCenterLine[0],
                     trainingCenterLine[1],
-                    Integer.parseInt(trainingCenterLine[2]),
+                    trainingCenterLine[2],
                     Double.parseDouble(trainingCenterLine[4]),
                     Double.parseDouble(trainingCenterLine[3]),
                     this.trainingCenterCapacity
@@ -174,12 +175,15 @@ public abstract class AbstractAlgorithm {
             {
                 Logger.getLogger(AbstractAlgorithm.class.getName()).log(
                     Level.SEVERE,
-                    "Couldn't parse a string."
+                    null,
+                    ex
                 );
             }
         }
         
         // Compute the distance between each agency and every training center
+        this.distances = new HashMap<>();
+        
         for(Agency agency : this.agencies) {
             Map<TrainingCenter, Double> centers = new HashMap();
             for(TrainingCenter trainingCenter : this.trainingCenters) {

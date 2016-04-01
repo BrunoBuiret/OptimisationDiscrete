@@ -12,10 +12,11 @@ import model.TrainingCenter;
  * @author Alexis Rabilloud (alexis.rabilloud@etu.univ-lyon1.fr)
  */
 public class SimulatedAnnealing extends AbstractAlgorithm {
+
     protected Map<Agency, TrainingCenter> bestSolution;
-    
+
     protected double bestPrice;
-    
+
     public SimulatedAnnealing(int employeesPerTrainingCenter, double trainersFee, double trainingCenterFee, double pricePerKilometer, String agenciesFilePath, String trainingCentersFilePath) {
         super(employeesPerTrainingCenter, trainersFee, trainingCenterFee, pricePerKilometer, agenciesFilePath, trainingCentersFilePath);
     }
@@ -29,19 +30,19 @@ public class SimulatedAnnealing extends AbstractAlgorithm {
         Map<Agency, TrainingCenter> nextSolution = new HashMap<>();
         double nextPrice = 0.;
         Random random = new Random();
-        
+
         this.bestSolution = currentSolution;
         this.bestPrice = currentPrice;
-        
+
         // Find a solution by linking every agency to the closest training center
         // with enough available seats;
         // @todo Do it.
-        
         for (Agency a : this.agencies) {
             boolean placed = false;
-            Map<TrainingCenter,Double> temp = new HashMap<>(this.distances.get(a));
+            Map<TrainingCenter, Double> temp = new HashMap<>(this.distances.get(a));
             Double distMin = Double.MAX_VALUE;
             TrainingCenter closestTC = null;
+            
             do {
                 for (TrainingCenter tc : temp.keySet()) {
                     if (temp.get(tc) < distMin) {
@@ -52,16 +53,16 @@ public class SimulatedAnnealing extends AbstractAlgorithm {
                 if ((closestTC.getCapacity() - closestTC.getOccupiedPlaces()) >= a.getEmployeesNumber()) {
                     currentSolution.put(a, closestTC);
                     placed = true;
-                }
-                else {
+                } else {
                     temp.remove(closestTC);
                 }
             } while (!placed && !temp.isEmpty());
         }
-        
+
         if (currentSolution.size() != this.agencies.size()) {
             throw new IllegalStateException("Not all agencies are affected to a training center.");
         }
+        
         // Iterate to get the next best solution
         // @todo Do it.
     }

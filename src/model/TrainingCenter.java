@@ -32,14 +32,14 @@ public class TrainingCenter {
     protected double longitude;
     
     /**
-     * The training center's maximum capacity
+     * The training center's capacity.
      */
-    protected int maximumCapacity = 60;
+    protected int capacity;
     
     /**
-     * The training center's already occupied places
+     * The training center's already occupied places.
      */
-    protected int occupiedPlace = 0;
+    protected int occupiedPlaces;
     
     /**
      * Creates a new training center.
@@ -49,14 +49,17 @@ public class TrainingCenter {
      * @param zipCode The training center's zip code.
      * @param latitude The training center's latitude.
      * @param longitude The training center's longitude.
+     * @param capacity The training center's capacity.
      */
-    public TrainingCenter(String id, String name, int zipCode, double latitude, double longitude)
+    public TrainingCenter(String id, String name, int zipCode, double latitude, double longitude, int capacity)
     {
         this.id = id;
         this.name = name;
         this.zipCode = zipCode;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.capacity = capacity;
+        this.occupiedPlaces = 0;
     }
 
     /**

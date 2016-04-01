@@ -37,6 +37,27 @@ public class SimulatedAnnealing extends AbstractAlgorithm {
         // with enough available seats;
         // @todo Do it.
         
+        for (Agency a : this.agencies) {
+            boolean placed = false;
+            Map<TrainingCenter,Double> temp = new HashMap<>(this.distances.get(a));
+            Double distMin = Double.MAX_VALUE;
+            TrainingCenter closestTC = null;
+            do {
+                for (TrainingCenter tc : temp.keySet()) {
+                    if (temp.get(tc) < distMin) {
+                        distMin = temp.get(tc);
+                        closestTC = tc;
+                    }
+                }
+                if ((closestTC.getCapacity() - closestTC.getOccupiedPlaces()) >= a.getEmployeesNumber()) {
+                    currentSolution.put(a, closestTC);
+                }
+                else {
+                    temp.remove(closestTC);
+                }
+            } while (!placed);
+        }
+        
         // Iterate to get the next best solution
         // @todo Do it.
     }

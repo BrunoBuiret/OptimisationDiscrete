@@ -151,4 +151,40 @@ public class TrainingCenter {
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
+    
+    /**
+     * Gets the training center's capcity
+     * 
+     * @return capacity The training center's capacity
+    */
+    public int getCapacity() {
+        return this.capacity;
+    }
+    
+    /**
+     * Sets the training center's capacity
+     * 
+     * @param capacity The training center's capacity
+     */
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+    
+    /**
+     * Gets the training center's occupied places
+     * 
+     * @return occupiedPlaces The training center's occupiedPlaces
+    */
+    public int getOccupiedPlaces() {
+        return this.occupiedPlaces;
+    }
+    
+    /**
+     * Sets the training center's occupied places
+     * 
+     * @param op The training center's occupied places
+     */
+    public void setOccupiedPlaces(int op) {
+        this.occupiedPlaces = op;
+    }
 }

@@ -2,8 +2,10 @@ package algorithms;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Agency;
@@ -186,5 +188,25 @@ public abstract class AbstractAlgorithm {
     protected double getDistance(Agency agency, TrainingCenter trainingCenter)
     {
         return 0.;
+    }
+    
+    /**
+     * Computes the price for a solution.
+     * 
+     * @param solution The solution to get the price from.
+     * @return The price.
+     */
+    protected double getPrice(Map<Agency, TrainingCenter> solution)
+    {
+        double kilometersPrice = 0.;
+        Set<TrainingCenter> usedTrainingCenters = new HashSet<>();
+        
+        for(Map.Entry<Agency, TrainingCenter> entry : solution.entrySet())
+        {
+            kilometersPrice += entry.getKey().getEmployeesNumber() * this.getDistance(entry.getKey(), entry.getValue());
+            usedTrainingCenters.add(entry.getValue());
+        }
+        
+        return usedTrainingCenters.size() * (this.trainersFee + this.trainingCenterFee) + kilometersPrice;
     }
 }

@@ -49,4 +49,62 @@ public abstract class DistanceUtils
             trainingCenter.getLongitude()
         );
     }
+    
+    /**
+     * 
+     * @param latitude
+     * @param longitude
+     * @param width
+     * @param height
+     * @return An array of two items, the first being the abscissa and the second
+     * being the ordinate.
+     * @see http://stackoverflow.com/questions/14329691/covert-latitude-longitude-point-to-a-pixels-x-y-on-mercator-projection
+     */
+    public static double[] degreesToPixels(double latitude, double longitude, int width, int height)
+    {
+        // Check parameters
+        if(latitude < -90 || latitude > 90)
+        {
+            throw new IllegalArgumentException(String.format(
+                "La latitude donnée, %f, est invalide.",
+                latitude
+            ));
+        }
+        
+        if(longitude < -180 || longitude > 180)
+        {
+            throw new IllegalArgumentException(String.format(
+                "La longitude donnée, %f, est invalide.",
+                longitude
+            ));
+        }
+        
+        if(width <= 0)
+        {
+            throw new IllegalArgumentException(String.format(
+                "La largeur ne peut pas être négative ou nulle."
+            ));
+        }
+        
+        if(height <= 0)
+        {
+            throw new IllegalArgumentException(String.format(
+                "La hauteur ne peut pas être négative ou nulle."
+            ));
+        }
+            
+        // Transform latitude and longitude to abscissa and ordinate
+        double[] pixels = new double[2];
+        
+        pixels[0] = (longitude + 180) * width / 360;
+        pixels[1] = (height / 2) - (
+            width * Math.log(
+                Math.tan(
+                    (Math.PI / 4) + (latitude * Math.PI / 360)
+                )
+            ) / (2 * Math.PI)
+        );
+        
+        return pixels;
+    }
 }

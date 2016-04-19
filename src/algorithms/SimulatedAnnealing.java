@@ -99,7 +99,8 @@ public class SimulatedAnnealing extends AbstractAlgorithm
 
             if(closestTrainingCenter != null)
             {
-               lastSolution.put(agency, closestTrainingCenter);
+                closestTrainingCenter.setTraineesNumber(closestTrainingCenter.getTraineesNumber() + agency.getEmployeesToTrainNumber());
+                lastSolution.put(agency, closestTrainingCenter);
             }
             else
             {
@@ -127,45 +128,61 @@ public class SimulatedAnnealing extends AbstractAlgorithm
                 // Get a neighbor solution by randomly linking an agency to another training center
                 Agency agency = this.agencies.get(randomizer.nextInt(this.agencies.size()));
                 TrainingCenter lastTrainingCenter = lastSolution.get(agency), currentTrainingCenter = null;
+                List<TrainingCenter> availableTrainingCenters = new ArrayList<>(this.trainingCenters);
                 
-                do
+                while(currentTrainingCenter == null && availableTrainingCenters.size() > 0)
                 {
-                    currentTrainingCenter = this.trainingCenters.get(randomizer.nextInt(this.trainingCenters.size()));
-                }
-                while(lastTrainingCenter.equals(currentTrainingCenter));
-                
-                currentSolution.put(agency, currentTrainingCenter);
-                currentPrice = this.getPrice(currentSolution);
-                
-                // Compute prices difference
-                double deltaPrice = currentPrice - lastPrice;
-                
-                if(deltaPrice <= 0)
-                {
-                    lastSolution = currentSolution;
-                    lastPrice = currentPrice;
+                    currentTrainingCenter = availableTrainingCenters.get(randomizer.nextInt(availableTrainingCenters.size()));
                     
-                    if(currentPrice < bestPrice)
+                    if(
+                        lastTrainingCenter.equals(currentTrainingCenter) ||
+                        currentTrainingCenter.getCapacity() - currentTrainingCenter.getTraineesNumber() < agency.getEmployeesToTrainNumber()
+                    )
                     {
-                        bestSolution = currentSolution;
-                        bestPrice = currentPrice;
+                        // Avoid an infinite loop by getting rid of those that can't be chosen
+                        availableTrainingCenters.remove(currentTrainingCenter);
+                        currentTrainingCenter = null;
                     }
                 }
-                else
+                
+                // Was a new training center found?
+                if(currentTrainingCenter != null)
                 {
-                    double p = randomizer.nextDouble();
-                    
-                    if(p <= Math.exp(-deltaPrice / this.temperature))
+                    // Update the current solution
+                    currentTrainingCenter.setTraineesNumber(currentTrainingCenter.getTraineesNumber() + agency.getEmployeesToTrainNumber());
+                    currentSolution.put(agency, currentTrainingCenter);
+                    currentPrice = this.getPrice(currentSolution);
+
+                    // Compute prices difference
+                    double deltaPrice = currentPrice - lastPrice;
+
+                    if(deltaPrice <= 0)
                     {
                         lastSolution = currentSolution;
                         lastPrice = currentPrice;
+
+                        if(currentPrice < bestPrice)
+                        {
+                            bestSolution = currentSolution;
+                            bestPrice = currentPrice;
+                        }
                     }
-                }
-                
-                // Notify the observers so that the current solution can be known
-                for(AlgorithmListenerInterface observer : this.observers)
-                {
-                    observer.onStepEnd(lastSolution, lastPrice);
+                    else
+                    {
+                        double p = randomizer.nextDouble();
+
+                        if(p <= Math.exp(-deltaPrice / this.temperature))
+                        {
+                            lastSolution = currentSolution;
+                            lastPrice = currentPrice;
+                        }
+                    }
+
+                    // Notify the observers so that the current solution can be known
+                    for(AlgorithmListenerInterface observer : this.observers)
+                    {
+                        observer.onStepEnd(lastSolution, lastPrice);
+                    }
                 }
             }
 

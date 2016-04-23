@@ -108,6 +108,7 @@ public class SimulationWindow extends javax.swing.JFrame
         trainingCenterCapacityField = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Simulation - Projet - Lieux de formation");
         setMinimumSize(new java.awt.Dimension(750, 400));
         setPreferredSize(new java.awt.Dimension(750, 400));
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
@@ -440,9 +441,11 @@ public class SimulationWindow extends javax.swing.JFrame
             this.agenciesBrowseButton.setEnabled(false);
             this.trainingCentersField.setEnabled(false);
             this.trainingCentersBrowseButton.setEnabled(false);
+            this.trainingCenterCapacityField.setEnabled(false);
             this.iterationsNumberField.setEnabled(false);
             this.neighborsChoicesNumberField.setEnabled(false);
             this.initialTemperatureField.setEnabled(false);
+            this.temperatureModifierField.setEnabled(false);
             this.simulatedAnnealingLaunchButton.setEnabled(false);
 
             // Clear log history
@@ -708,9 +711,11 @@ public class SimulationWindow extends javax.swing.JFrame
             this.agenciesBrowseButton.setEnabled(true);
             this.trainingCentersField.setEnabled(true);
             this.trainingCentersBrowseButton.setEnabled(true);
+            this.trainingCenterCapacityField.setEnabled(true);
             this.iterationsNumberField.setEnabled(true);
             this.neighborsChoicesNumberField.setEnabled(true);
             this.initialTemperatureField.setEnabled(true);
+            this.temperatureModifierField.setEnabled(true);
             this.simulatedAnnealingLaunchButton.setEnabled(true);
         });
     }//GEN-LAST:event_simulatedAnnealingLaunchButtonActionPerformed

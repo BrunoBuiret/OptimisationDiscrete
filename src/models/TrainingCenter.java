@@ -70,7 +70,7 @@ public class TrainingCenter
      */
     public String getId()
     {
-        return id;
+        return this.id;
     }
 
     /**
@@ -90,7 +90,7 @@ public class TrainingCenter
      */
     public String getName()
     {
-        return name;
+        return this.name;
     }
 
     /**
@@ -110,7 +110,7 @@ public class TrainingCenter
      */
     public String getZipCode()
     {
-        return zipCode;
+        return this.zipCode;
     }
 
     /**
@@ -130,7 +130,7 @@ public class TrainingCenter
      */
     public double getLatitude()
     {
-        return latitude;
+        return this.latitude;
     }
 
     /**
@@ -150,7 +150,7 @@ public class TrainingCenter
      */
     public double getLongitude()
     {
-        return longitude;
+        return this.longitude;
     }
 
     /**
@@ -170,7 +170,7 @@ public class TrainingCenter
      */
     public int getCapacity()
     {
-        return capacity;
+        return this.capacity;
     }
 
     /**
@@ -190,7 +190,7 @@ public class TrainingCenter
      */
     public int getTraineesNumber()
     {
-        return traineesNumber;
+        return this.traineesNumber;
     }
 
     /**

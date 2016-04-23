@@ -64,7 +64,7 @@ public class Agency
      */
     public String getId()
     {
-        return id;
+        return this.id;
     }
 
     /**
@@ -84,7 +84,7 @@ public class Agency
      */
     public String getName()
     {
-        return name;
+        return this.name;
     }
 
     /**
@@ -104,7 +104,7 @@ public class Agency
      */
     public String getZipCode()
     {
-        return zipCode;
+        return this.zipCode;
     }
 
     /**
@@ -124,7 +124,7 @@ public class Agency
      */
     public double getLatitude()
     {
-        return latitude;
+        return this.latitude;
     }
 
     /**
@@ -144,7 +144,7 @@ public class Agency
      */
     public double getLongitude()
     {
-        return longitude;
+        return this.longitude;
     }
 
     /**
@@ -164,7 +164,7 @@ public class Agency
      */
     public int getEmployeesToTrainNumber()
     {
-        return employeesToTrainNumber;
+        return this.employeesToTrainNumber;
     }
 
     /**

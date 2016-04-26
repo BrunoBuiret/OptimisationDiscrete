@@ -156,8 +156,23 @@ public abstract class AbstractAlgorithm
         {
             kilometersPrice += entry.getKey().getEmployeesToTrainNumber() * this.getDistance(entry.getKey(), entry.getValue()) / 1000;
             usedTrainingCenters.add(entry.getValue());
+            
+            /*
+            System.out.println(String.format(
+                "%s (%f ; %f ;; %d) -> %s (%f ; %f) = %f € (%f km)",
+                entry.getKey().getName(),
+                entry.getKey().getLatitude(),
+                entry.getKey().getLongitude(),
+                entry.getKey().getEmployeesToTrainNumber(),
+                entry.getValue().getName(),
+                entry.getValue().getLatitude(),
+                entry.getValue().getLongitude(),
+                entry.getKey().getEmployeesToTrainNumber() * this.getDistance(entry.getKey(), entry.getValue()) / 1000 * this.pricePerKilometer,
+                this.getDistance(entry.getKey(), entry.getValue()) / 1000
+            ));
+            */
         }
         
-        return usedTrainingCenters.size() * (this.trainersFee + this.trainingCentersFee) + kilometersPrice;
+        return usedTrainingCenters.size() * (this.trainersFee + this.trainingCentersFee) + kilometersPrice * this.pricePerKilometer;
     }
 }

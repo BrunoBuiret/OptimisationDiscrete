@@ -149,6 +149,7 @@ public class SimulatedAnnealing extends AbstractAlgorithm
                 if(currentTrainingCenter != null)
                 {
                     // Update the current solution
+                    lastTrainingCenter.setTraineesNumber(lastTrainingCenter.getTraineesNumber() - agency.getEmployeesToTrainNumber());
                     currentTrainingCenter.setTraineesNumber(currentTrainingCenter.getTraineesNumber() + agency.getEmployeesToTrainNumber());
                     currentSolution.put(agency, currentTrainingCenter);
                     currentPrice = this.getPrice(currentSolution);
@@ -175,6 +176,12 @@ public class SimulatedAnnealing extends AbstractAlgorithm
                         {
                             lastSolution = currentSolution;
                             lastPrice = currentPrice;
+                        }
+                        else
+                        {
+                            // Revert to previous solution
+                            lastTrainingCenter.setTraineesNumber(lastTrainingCenter.getTraineesNumber() + agency.getEmployeesToTrainNumber());
+                            currentTrainingCenter.setTraineesNumber(currentTrainingCenter.getTraineesNumber() - agency.getEmployeesToTrainNumber());
                         }
                     }
 

@@ -106,19 +106,20 @@ public class SimulationWindow extends javax.swing.JFrame
         temperatureModifierField = new javax.swing.JSpinner();
         trainingCenterCapacityLabel = new javax.swing.JLabel();
         trainingCenterCapacityField = new javax.swing.JSpinner();
+        mapView = new views.MapComponent();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Simulation - Projet - Lieux de formation");
         setMinimumSize(new java.awt.Dimension(750, 400));
         setPreferredSize(new java.awt.Dimension(750, 400));
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
-        layout.columnWidths = new int[] {0, 5, 0, 5, 0, 5, 0};
-        layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0};
+        layout.columnWidths = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
+        layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
         getContentPane().setLayout(layout);
 
         trainersFeeLabel.setText("Coût des formateurs (€)");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(4, 5, 0, 0);
@@ -126,7 +127,7 @@ public class SimulationWindow extends javax.swing.JFrame
 
         trainingCentersFeeLabel.setText("Coût d'un centre de formation (€)");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
@@ -134,7 +135,7 @@ public class SimulationWindow extends javax.swing.JFrame
 
         agenciesLabel.setText("Liste des agences");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
@@ -142,12 +143,14 @@ public class SimulationWindow extends javax.swing.JFrame
 
         trainingCentersLabel.setText("Liste des centres de formation");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         getContentPane().add(trainingCentersLabel, gridBagConstraints);
 
         agenciesPanel.setLayout(new java.awt.GridBagLayout());
+
+        agenciesField.setText("D:\\ListeAgences_100.txt");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -169,7 +172,7 @@ public class SimulationWindow extends javax.swing.JFrame
         agenciesPanel.add(agenciesBrowseButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
@@ -177,6 +180,8 @@ public class SimulationWindow extends javax.swing.JFrame
         getContentPane().add(agenciesPanel, gridBagConstraints);
 
         trainingCentersPanel.setLayout(new java.awt.GridBagLayout());
+
+        trainingCentersField.setText("D:\\LieuxPossibles.txt");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -198,7 +203,7 @@ public class SimulationWindow extends javax.swing.JFrame
         trainingCentersPanel.add(trainingCentersBrowseButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
@@ -207,7 +212,7 @@ public class SimulationWindow extends javax.swing.JFrame
 
         trainersFeeField.setModel(new javax.swing.SpinnerNumberModel(2000.0d, 0.0d, null, 1.0d));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
@@ -216,7 +221,7 @@ public class SimulationWindow extends javax.swing.JFrame
 
         trainingCentersFeeField.setModel(new javax.swing.SpinnerNumberModel(1000.0d, 0.0d, null, 1.0d));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
@@ -224,7 +229,7 @@ public class SimulationWindow extends javax.swing.JFrame
 
         pricePerKilometerLabel.setText("Coût de transport par kilomètre (€)");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
@@ -232,7 +237,7 @@ public class SimulationWindow extends javax.swing.JFrame
 
         pricePerKilometerField.setModel(new javax.swing.SpinnerNumberModel(0.4d, 0.0d, null, 0.1d));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
@@ -361,29 +366,42 @@ public class SimulationWindow extends javax.swing.JFrame
         algorithmsTabs.addTab("Recuit simulé", simulatedAnnealingTab);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 3);
         getContentPane().add(algorithmsTabs, gridBagConstraints);
 
         trainingCenterCapacityLabel.setText("Capacité d'un centre de formation");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         getContentPane().add(trainingCenterCapacityLabel, gridBagConstraints);
 
         trainingCenterCapacityField.setModel(new javax.swing.SpinnerNumberModel(60, 0, null, 1));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
         getContentPane().add(trainingCenterCapacityField, gridBagConstraints);
+
+        mapView.setMaximumSize(new java.awt.Dimension(750, 690));
+        mapView.setMinimumSize(new java.awt.Dimension(750, 690));
+        mapView.setPreferredSize(new java.awt.Dimension(750, 690));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 9;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 0);
+        getContentPane().add(mapView, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -596,6 +614,9 @@ public class SimulationWindow extends javax.swing.JFrame
                         trainingCenterCapacity
                     ));
                 }
+                
+                this.mapView.setAgencies(agencies);
+                this.mapView.setTrainingCenters(trainingCenters);
 
                 // Create the algorithm
                 SimulatedAnnealing algorithm = new SimulatedAnnealing(
@@ -620,6 +641,7 @@ public class SimulationWindow extends javax.swing.JFrame
                 Document logDocument = this.simulatedAnnealingLog.getDocument();
                 NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(new Locale("fr", "FR"));
 
+                algorithm.addObserver(this.mapView);
                 algorithm.addObserver(new AlgorithmListenerInterface()
                 {
                     @Override
@@ -673,22 +695,6 @@ public class SimulationWindow extends javax.swing.JFrame
             }
             else
             {
-                /*
-                StringBuilder errorsBuilder = new StringBuilder();
-                errorsBuilder.append("<ul>");
-
-                errors.stream().forEach((error) ->
-                {
-                    errorsBuilder.append(String.format(
-                        "<li>%s</li>",
-                        error
-                    ));
-                });
-
-                errorsBuilder.append("</ul>");
-
-                this.simulatedAnnealingLog.setText(this.logTemplate.replace("<!-- body -->", errorsBuilder.toString()));
-                */
                 StringBuilder errorsBuilder = new StringBuilder();
 
                 errors.stream().forEach((error) ->
@@ -732,6 +738,7 @@ public class SimulationWindow extends javax.swing.JFrame
     private javax.swing.JLabel iterationsNumberLabel;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private views.MapComponent mapView;
     private javax.swing.JSpinner neighborsChoicesNumberField;
     private javax.swing.JLabel neighborsChoicesNumberLabel;
     private javax.swing.JSpinner pricePerKilometerField;

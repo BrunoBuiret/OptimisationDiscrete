@@ -1,5 +1,6 @@
 package utils;
 
+import javax.annotation.Resources;
 import models.Agency;
 import models.TrainingCenter;
 
@@ -10,6 +11,16 @@ import models.TrainingCenter;
  */
 public abstract class DistanceUtils
 {
+    /**
+     * 
+     */
+    public static final int INDEX_ABSCISSA = 0;
+    
+    /**
+     * 
+     */
+    public static final int INDEX_ORDINATE = 1;
+    
     /**
      * The Earth's radius in meters.
      */
@@ -59,6 +70,8 @@ public abstract class DistanceUtils
      * @return An array of two items, the first being the abscissa and the second
      * being the ordinate.
      * @see http://stackoverflow.com/questions/14329691/covert-latitude-longitude-point-to-a-pixels-x-y-on-mercator-projection
+     * @see #INDEX_ABSCISSA
+     * @see #INDEX_ORDINATE
      */
     public static double[] degreesToPixels(double latitude, double longitude, int width, int height)
     {
@@ -96,8 +109,8 @@ public abstract class DistanceUtils
         // Transform latitude and longitude to abscissa and ordinate
         double[] pixels = new double[2];
         
-        pixels[0] = (longitude + 180) * width / 360;
-        pixels[1] = (height / 2) - (
+        pixels[DistanceUtils.INDEX_ABSCISSA] = (longitude + 180) * width / 360;
+        pixels[DistanceUtils.INDEX_ORDINATE] = (height / 2) - (
             width * Math.log(
                 Math.tan(
                     (Math.PI / 4) + (latitude * Math.PI / 360)

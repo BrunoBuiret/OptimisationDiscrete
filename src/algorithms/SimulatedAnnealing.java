@@ -128,7 +128,9 @@ public class SimulatedAnnealing extends AbstractAlgorithm
                 // Get a neighbor solution by randomly linking an agency to another training center
                 Agency agency = this.agencies.get(randomizer.nextInt(this.agencies.size()));
                 TrainingCenter lastTrainingCenter = lastSolution.get(agency), currentTrainingCenter = null;
-                List<TrainingCenter> availableTrainingCenters = new ArrayList<>(this.trainingCenters);
+                // List<TrainingCenter> availableTrainingCenters = new ArrayList<>(this.trainingCenters);
+                List<TrainingCenter> availableTrainingCenters = new ArrayList<>();
+                availableTrainingCenters.addAll(lastSolution.values());
                 
                 while(currentTrainingCenter == null && availableTrainingCenters.size() > 0)
                 {

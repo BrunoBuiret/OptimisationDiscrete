@@ -110,11 +110,11 @@ public class SimulationWindow extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Simulation - Projet - Lieux de formation");
-        setMinimumSize(new java.awt.Dimension(750, 400));
-        setPreferredSize(new java.awt.Dimension(750, 400));
+        setMinimumSize(new java.awt.Dimension(1500, 740));
+        setPreferredSize(new java.awt.Dimension(1500, 740));
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
         layout.columnWidths = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
-        layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
+        layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0};
         getContentPane().setLayout(layout);
 
         trainersFeeLabel.setText("Coût des formateurs (€)");
@@ -398,7 +398,7 @@ public class SimulationWindow extends javax.swing.JFrame
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 9;
+        gridBagConstraints.gridheight = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 0);
         getContentPane().add(mapView, gridBagConstraints);

@@ -4,7 +4,6 @@ import algorithms.AlgorithmListenerInterface;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,8 +39,6 @@ public class MapComponent extends JComponent implements AlgorithmListenerInterfa
      */
     protected Map<Agency, TrainingCenter> solution;
     
-    
-    
     protected BufferedImage image;
     
     protected static final double NORTH_BOUNDARY = 51.05;
@@ -71,6 +68,12 @@ public class MapComponent extends JComponent implements AlgorithmListenerInterfa
         this.agencies = new ArrayList<>();
         this.trainingCenters = new ArrayList<>();
         this.solution = new HashMap<>();
+        
+        //
+        Dimension fixedDimension = new Dimension(750, 690);
+        this.setMinimumSize(fixedDimension);
+        this.setMaximumSize(fixedDimension);
+        this.setPreferredSize(fixedDimension);
     }
     
     /**

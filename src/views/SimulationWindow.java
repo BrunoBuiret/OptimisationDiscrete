@@ -107,6 +107,7 @@ public class SimulationWindow extends javax.swing.JFrame
         trainingCenterCapacityLabel = new javax.swing.JLabel();
         trainingCenterCapacityField = new javax.swing.JSpinner();
         mapView = new views.MapComponent();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Simulation - Projet - Lieux de formation");
@@ -114,7 +115,7 @@ public class SimulationWindow extends javax.swing.JFrame
         setPreferredSize(new java.awt.Dimension(1500, 740));
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
         layout.columnWidths = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
-        layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0};
+        layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
         getContentPane().setLayout(layout);
 
         trainersFeeLabel.setText("Coût des formateurs (€)");
@@ -252,6 +253,7 @@ public class SimulationWindow extends javax.swing.JFrame
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 0);
         simulatedAnnealingTab.add(iterationsNumberLabel, gridBagConstraints);
@@ -371,8 +373,6 @@ public class SimulationWindow extends javax.swing.JFrame
         gridBagConstraints.gridwidth = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 3);
         getContentPane().add(algorithmsTabs, gridBagConstraints);
 
@@ -392,15 +392,20 @@ public class SimulationWindow extends javax.swing.JFrame
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
         getContentPane().add(trainingCenterCapacityField, gridBagConstraints);
 
-        mapView.setMaximumSize(new java.awt.Dimension(750, 690));
-        mapView.setMinimumSize(new java.awt.Dimension(750, 690));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 7;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.gridheight = 9;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 0);
         getContentPane().add(mapView, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weighty = 0.1;
+        getContentPane().add(filler1, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -731,6 +736,7 @@ public class SimulationWindow extends javax.swing.JFrame
     private javax.swing.JLabel agenciesLabel;
     private javax.swing.JPanel agenciesPanel;
     private javax.swing.JTabbedPane algorithmsTabs;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JSpinner initialTemperatureField;
     private javax.swing.JLabel initialTemperatureLabel;
     private javax.swing.JSpinner iterationsNumberField;

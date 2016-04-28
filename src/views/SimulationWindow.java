@@ -394,7 +394,6 @@ public class SimulationWindow extends javax.swing.JFrame
 
         mapView.setMaximumSize(new java.awt.Dimension(750, 690));
         mapView.setMinimumSize(new java.awt.Dimension(750, 690));
-        mapView.setPreferredSize(new java.awt.Dimension(750, 690));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;

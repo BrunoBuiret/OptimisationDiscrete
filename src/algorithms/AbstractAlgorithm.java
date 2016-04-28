@@ -154,7 +154,7 @@ public abstract class AbstractAlgorithm
         
         for(Map.Entry<Agency, TrainingCenter> entry : solution.entrySet())
         {
-            kilometersPrice += entry.getKey().getEmployeesToTrainNumber() * this.getDistance(entry.getKey(), entry.getValue()) / 1000;
+            kilometersPrice += entry.getKey().getEmployeesToTrainNumber() * this.getDistance(entry.getKey(), entry.getValue()) / 1000 *2; 
             usedTrainingCenters.add(entry.getValue());
             
             /*
